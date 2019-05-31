@@ -5,11 +5,11 @@ import collections
 dataset_name = "d100"
 computation_method = 'tabu_search'
 
-tabu_tenure_1 = 3
+tabu_tenure_1 = 30
 tabu_tenure_2 = 7
 tabu_tenure_3 = 12
 tabu_tenure_4 = 20
-tabu_tenure =tabu_tenure_1+2
+tabu_tenure = tabu_tenure_1
 tabu_iterations = 10000
 
 class TabuSearch:
@@ -36,20 +36,22 @@ class TabuSearch:
         best_solution = None
         best_move_index = None
         best_solution_is_tabu = False
-        nontabu_best_value = -1
+        nontabu_best_value = -2
         best_value = self._best_value
         for sol, move_index in self.get_neghboring_solution(self._current_solution):
             value, _ = resutils.process_bool_solution(dataset, sol)
             sol_is_tabu = self.check_if_tabu(move_index)
+            if sol[move_index] == 0:
+                sol_is_tabu = False
             if value > best_value:
-                best_solution = sol
+                best_solution = sol.copy()
                 best_move_index = move_index
                 best_value = value
                 nontabu_best_value = value
                 best_solution_is_tabu = sol_is_tabu
             elif not sol_is_tabu and value > nontabu_best_value:
                 nontabu_best_value = value
-                best_solution = sol
+                best_solution = sol.copy()
                 best_move_index = move_index
         return best_solution, best_move_index, nontabu_best_value, best_solution_is_tabu
 

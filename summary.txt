@@ -1,0 +1,27 @@
+4. The complexity of the backtracking algrithm for the knapsack problem is 2^n. In our case, T10/T8 = 5.54 (approx. 2^10/2^8). It  would have been close to 1.25 if the algrithm would have had a linear complexity. Due to its exponential complexity, the backtracking algorithm is not feasible for larger datasets(it took roughly 0.2 ms to compute the solution for T10, therefore it would take approximatly 2^40 times longer to compute the solution for T50).
+
+5. Sns-8 and Sns-10 are worse than Sb-8 and Sb-10 respectively because the neighborhood search does not always find the best solution from the entire solution space, it actually stops when it finds a local optima, thus we can have different solutions after each run.
+
+6. the neighborhood search is a greedy algorithm and its complexity is smaller than 
+the one for backtracking. The ratio between the time for backtracking and the
+time for ns is not concludent, since backtracking was performed only on small
+datasets.
+
+7. The neighborhood search algorithm is the better choice for larger datasets, but
+the solution found with NS might not be the best solution, but only a locam optima.
+Backtracking ensures the best solution is found, but the execution time grows 
+exponentially with the size of the dataset, thus it is not feasible for larger datasets.
+
+10. From the start we can say that the backtracking solution is the optimal solution, but due to its high complexity it is not feasible for larger datasets. Both tabu search and the genetic algorithm are greedy algorithms and empirically, on our datasets, the genetic algorith performed better, obtaining better solutions. The computational size for the genenetic algorithm and the tabu search were comparable, even if the GA has lower complexity.
+
+11. Both algorithms perform uncomparably better than backtracking on larger datasets (backtracking could not even give a result in a feasible time on dataset 50). Basically, the component that influences the computational time the most, ends up being the number of iterations. As seen when ran on our datasets, both algorithms perform well in terms of computational time.
+
+12. A 10000 iteration tabu search was comparable with a 2000 iteration generic algorithm run, in terms of elapsed time. As for the optinality of the solution, the genetic algorithm perfomed much better.
+
+13. A higher number of iterations combined with a small population size gave similar(slightly worse) results than a larger population with a smaller number of iterations. Empirically I observed that a medium populaton size combined with a high enough number of iterations gave the best result. The genetic algoritm is a type of reenforcement learning algorithm. the mutation rate can be seen as the exploration factor, whie the crossover rate as the expoitation factor. Normally we would prefer a higher crossover rate compared to the mutatuon rate(maybe they could be closer in value in the beginnig of the algorithm)
+
+14. The higher the dataset the higher the acceptable tenure value. If we have a small dataset and a large tenure value we could end in a sort of deadlock (all moves are tabu and none of the are better than the best solution). The tabu tenure is like a memory, the bigger the value the longer the memory. The optimal value for the tabu tenure was strictly dependent on the dataset size.
+
+15. In conclusion, the backtraking algorith is the only algorithm that guarantees the optimal solution, but because of it's complexity it is not feasable for larger datasets(exponential complexity). The neighborhood search is a straight forward greedy algorithm, but it gets stuck in the first local optimum, but it compensates by having the lowest complexity. The tabu search algorithm is similat to the NS, but it introduces some tabutenure-termed memory, it's complexity is also similar to NS, but it adds the check if a move is tabu and also introduces iterations. By far the best of them was the genetic algorithm. It is a type of reenforcemen algorithm that simulates the real world evolution, mutations helping in exploring the solution set, crossovers helping in converging toward the better solutions and cloning helping in preserving the best found solutions.
+
+
