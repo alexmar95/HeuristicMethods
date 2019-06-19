@@ -1,7 +1,7 @@
 import random
 import time
 import resutils as ru
-
+import matplotlib.pyplot as plt
 computation_method = 'genetic_algorithm'
 dataset_name = "d8"
 
@@ -154,8 +154,13 @@ def run_genetic_algo(genetic_hyperparameters):
     new_population = Population(population_0.get_next_population_chromosomes(), genetic_hyperparameters)
     print(f"Population_1:\n{new_population}")
     no_iterations = genetic_hyperparameters["no_iterations"]
+    values = []
     for _ in range(no_iterations):
         new_population = Population(new_population.get_next_population_chromosomes(), genetic_hyperparameters)
+        values.append(new_population.chromosomes[0].fit_value)
+    plt.plot(values)
+    plt.ylabel(f'maxV:{values[-1]}')
+    plt.show()
     print(f"Population_{no_iterations+1}:\n{new_population}")
     best_chromosome = new_population.chromosomes[0]
     index_solution = [idx for idx, v in enumerate(best_chromosome.genes) if v == 1]
